@@ -1,4 +1,4 @@
-# AIDE — AI Development System
+# AIDE — AI Development Environment
 
 **AIDE** (AI Development Environment) is an AI software engineering framework that bootstraps spec-driven, AI-assisted projects for **Cursor IDE** and **Claude Code**.
 
