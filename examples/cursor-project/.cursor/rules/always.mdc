@@ -1,0 +1,11 @@
+---
+description: Example always-on rule for demo project
+globs:
+alwaysApply: true
+---
+
+# Always-On — example-app
+
+- Read `docs/vision.md` before proposing features
+- No implementation without approved spec in `docs/specs/`
+- Ask when requirements are ambiguous

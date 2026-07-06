@@ -1,0 +1,42 @@
+---
+description: Frontend development enforcement
+globs: src/**/app/**,src/**/components/**,**/*.component.ts,**/*.tsx,**/*.vue
+alwaysApply: false
+---
+
+# Frontend Rules — {{PROJECT_NAME}}
+
+## Component Design
+
+- Presentational components receive data via props
+- Container components handle data fetching and state
+- One component per file; co-locate styles when applicable
+
+## State Management
+
+- Prefer local state; lift only when shared
+- Server state via dedicated data layer — no ad-hoc fetch in leaf components
+- Avoid prop drilling beyond two levels — use context or store
+
+## UX Requirements
+
+- Loading, empty, and error states for every async view
+- Accessible: semantic HTML, ARIA where needed, keyboard navigation
+- Responsive layouts for mobile and desktop breakpoints
+
+## Performance
+
+- Lazy-load routes and heavy components
+- Memoize expensive computations
+- Avoid unnecessary re-renders
+
+## Reference
+
+- Product scope: `docs/project.md`
+- Standards: `docs/coding-standards.md`
+
+## Prohibited
+
+- Business logic duplication that belongs in domain layer
+- Inline secrets or API keys
+- `any` types in component props

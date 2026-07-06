@@ -1,0 +1,44 @@
+---
+description: Core behavior enforced on every agent interaction
+globs:
+alwaysApply: true
+---
+
+# Always-On Rules — {{PROJECT_NAME}}
+
+## Workflow Gate
+
+- Identify current stage: Idea, Spec, Implement, Review, QA, Done
+- Do not write production code during Spec stage
+- Do not skip Review or QA for merged work
+
+## Spec Discipline
+
+- Require approved spec before implementation
+- Spec lives in `docs/specs/` or linked issue — create if missing
+- Ask user when requirements are ambiguous; do not invent scope
+
+## Documentation First
+
+- Read `docs/project.md` before feature proposals
+- Read `docs/architecture.md` before structural changes
+- Read `docs/coding-standards.md` before writing code
+
+## Change Control
+
+- Minimal diffs — only modify files required by the task
+- No drive-by refactors mixed with feature work
+- Architecture changes need ADR in `docs/decisions.md` + approval
+
+## Communication
+
+- State assumptions explicitly
+- Present options with trade-offs for ambiguous decisions
+- Output structured artifacts per active skill
+
+## Prohibited
+
+- Committing secrets or credentials
+- Using `any` in TypeScript without justification
+- Deleting tests to make builds pass
+- Implementing without referencing an approved spec

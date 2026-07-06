@@ -1,0 +1,42 @@
+---
+description: Testing standards enforcement
+globs: tests/**,**/*.spec.ts,**/*.test.ts,**/*.e2e.ts
+alwaysApply: false
+---
+
+# Testing Rules — {{PROJECT_NAME}}
+
+## Pyramid
+
+- Many unit tests — fast, isolated
+- Some integration tests — API and DB boundaries
+- Few e2e tests — critical user journeys only
+
+## Unit Tests
+
+- Test behavior, not implementation details
+- One assertion focus per test when practical
+- Mock external dependencies at infrastructure boundary
+
+## Integration Tests
+
+- Use test database or containers — never production
+- Reset state between tests
+- Cover happy path and primary error paths
+
+## E2E Tests
+
+- Cover P0 user flows from `docs/project.md`
+- Stable selectors — data-testid preferred
+- No flaky waits — use deterministic conditions
+
+## Coverage
+
+- Business logic in domain layer must have unit tests
+- New bugs require regression test before fix merge
+
+## Prohibited
+
+- Deleting or skipping tests to pass CI
+- Tests that depend on execution order
+- Hard-coded production URLs in test config
