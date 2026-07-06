@@ -2,7 +2,7 @@
 
 # Business — {{PROJECT_NAME}}
 
-> Fill this in if this project has a business model to reason about. AIDE uses this to configure your Business Analyst, Product Manager, and Product Owner agents. If this is a purely internal/technical project, you can write "N/A — internal tool" under each heading, but personas that depend on this file will stay blocked until you do.
+> Fill this in if this project has a business model to reason about. AIDE uses this to configure your Business Analyst, Marketing Specialist, Product Manager, and Product Owner agents. If this is a purely internal/technical project, you can write "N/A — internal tool" under each heading, but personas that depend on this file will stay blocked until you do.
 
 ## Business model
 

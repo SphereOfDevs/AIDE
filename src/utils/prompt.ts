@@ -5,6 +5,7 @@ import { readPackageName } from './fs';
 import type { Provider } from './manifest';
 import { getPersonaChoices, isPersonaKey, type PersonaKey } from '../personas/registry';
 import { getStackChoices, isStackKey, type StackKey } from '../stacks/registry';
+import { promptToggleSelect } from './toggle-select';
 
 export function isValidProjectName(name: string): boolean {
   return /^[a-zA-Z][a-zA-Z0-9._-]*$/.test(name.trim());
@@ -95,6 +96,24 @@ export async function promptForProviders(): Promise<Provider[]> {
   });
 }
 
+export async function promptForProvidersConfigured(initiallySelected: Provider[] = []): Promise<Provider[]> {
+  return promptToggleSelect<Provider>({
+    message: 'Select AI provider template(s)',
+    choices: [
+      {
+        name: 'Cursor IDE — rules, skills, agents, AGENTS.md, MCP',
+        value: 'cursor',
+      },
+      {
+        name: 'Claude Code — CLAUDE.md, commands, agents, workflows',
+        value: 'claude',
+      },
+    ],
+    initiallySelected,
+    required: true,
+  });
+}
+
 export async function resolveProviders(cliValue?: string): Promise<Provider[]> {
   if (cliValue?.trim()) {
     const providers = parseProviders(cliValue);
@@ -119,7 +138,7 @@ export function parsePersonas(value: string): PersonaKey[] {
   for (const part of splitList(value)) {
     if (!isPersonaKey(part)) {
       throw new Error(
-        `Unknown persona "${part}". Use one of: programmer, pm, po, designer, qa, business-analyst.`
+        `Unknown persona "${part}". Use one of: programmer, pm, po, designer, qa, business-analyst, marketing-specialist.`
       );
     }
     personas.add(part);
@@ -128,20 +147,26 @@ export function parsePersonas(value: string): PersonaKey[] {
   return [...personas];
 }
 
-export async function promptForPersonas(exclude: PersonaKey[] = []): Promise<PersonaKey[]> {
+export async function promptForPersonas(
+  exclude: PersonaKey[] = [],
+  initiallySelected: PersonaKey[] = []
+): Promise<PersonaKey[]> {
   const choices = getPersonaChoices(exclude);
 
   if (choices.length === 0) {
     return [];
   }
 
-  return checkbox<PersonaKey>({
+  return promptToggleSelect<PersonaKey>({
     message: 'Select AI personalities to configure',
-    instructions: 'Space to toggle · Enter to confirm',
-    loop: false,
-    required: true,
     choices,
+    initiallySelected: initiallySelected.filter((persona) => !exclude.includes(persona)),
+    required: true,
   });
+}
+
+export async function promptForPersonasAll(initiallySelected: PersonaKey[] = []): Promise<PersonaKey[]> {
+  return promptForPersonas([], initiallySelected);
 }
 
 export async function resolvePersonas(
@@ -157,7 +182,7 @@ export async function resolvePersonas(
   }
 
   throw new Error(
-    'Personas required in non-interactive mode. Use --personas programmer,pm,po,designer,qa,business-analyst.'
+    'Personas required in non-interactive mode. Use --personas programmer,pm,po,designer,qa,business-analyst,marketing-specialist.'
   );
 }
 
@@ -181,6 +206,15 @@ export async function promptForStacks(): Promise<StackKey[]> {
     loop: false,
     required: false,
     choices: getStackChoices(),
+  });
+}
+
+export async function promptForStacksConfigured(initiallySelected: StackKey[] = []): Promise<StackKey[]> {
+  return promptToggleSelect<StackKey>({
+    message: 'Select stack template(s) for the Programmer persona (optional)',
+    choices: getStackChoices(),
+    initiallySelected,
+    required: false,
   });
 }
 

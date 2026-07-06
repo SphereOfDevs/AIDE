@@ -64,7 +64,7 @@ See `docs/coding-standards.md`.
 
 ## Growing the AI team
 
-- Run `aide persona add` to configure a new personality (Programmer, PM, PO, Designer, QA, Business Analyst)
+- Run `aide persona add` or `aide configure` to configure personalities (Programmer, PM, PO, Designer, QA, Business Analyst, Marketing Specialist)
 - Run `aide audit` to check survey fill status and generated-file drift
 - Never edit `.aide/state.json` by hand — it is managed by the CLI
 

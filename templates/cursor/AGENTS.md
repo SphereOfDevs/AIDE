@@ -46,7 +46,7 @@ Idea → Spec → Implement → Review → QA → Done
 |------|---------|
 | `.cursor/rules/` | Always-on behavior enforcement (including stack-specific rules) |
 | `.cursor/skills/` | Stage-specific workflows |
-| `.cursor/agents/` | Persona subagents (Programmer, PM, PO, Designer, QA, Business Analyst) |
+| `.cursor/agents/` | Persona subagents (Programmer, PM, PO, Designer, QA, Business Analyst, Marketing Specialist) |
 | `mcp.json` | Optional Linear and GitHub integrations |
 | `docs/` | Shared product and engineering docs, generated from `AIDE_SURVEY/` |
 | `AIDE_SURVEY/` | Fill this in — feeds `docs/` and every persona agent |

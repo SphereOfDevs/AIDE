@@ -87,7 +87,9 @@ export function buildInstructionContent(
 
   lines.push('## Keeping this in sync', '');
   lines.push('- `aide audit` — check survey fill status, drift on generated files, and what could be added.');
+  lines.push('- `aide configure` — change providers, personalities, or stacks and create any missing survey files.');
   lines.push('- `aide persona add` — add a new personality later; AIDE creates only the new survey file(s) it needs.');
+  lines.push('- `aide delete` — remove all AIDE files from the project (optionally including AI instruction files).');
   lines.push('- Editing `AIDE_SURVEY/*.md` and running `aide init` again regenerates agents with the latest content.');
   lines.push('');
 

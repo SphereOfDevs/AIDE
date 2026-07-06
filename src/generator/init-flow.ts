@@ -100,7 +100,7 @@ export async function runInitFlow(options: InitFlowOptions): Promise<void> {
   logger.title('AIDE — Already generated');
   logger.info(`Directory: ${logger.highlight(options.targetDir)}`);
   logger.info('Everything currently configured has already been generated.');
-  logger.dim('Run `aide audit` to check status, or `aide persona add` to configure a new personality.\n');
+  logger.dim('Run `aide audit` to check status, `aide configure` to change providers/personas, or `aide persona add` to configure a new personality.\n');
 }
 
 async function ensureMissingSurveyFiles(

@@ -1,4 +1,11 @@
-export type PersonaKey = 'programmer' | 'pm' | 'po' | 'designer' | 'qa' | 'business-analyst';
+export type PersonaKey =
+  | 'programmer'
+  | 'pm'
+  | 'po'
+  | 'designer'
+  | 'qa'
+  | 'business-analyst'
+  | 'marketing-specialist';
 
 export const TASK_TEMPLATE_FILE = 'task-template.md';
 export const PLANNING_PERSONAS: PersonaKey[] = ['pm', 'po'];
@@ -88,6 +95,21 @@ export const PERSONAS: PersonaDefinition[] = [
     claudeTools: ['Read', 'Grep', 'Glob', 'Edit'],
     promptTemplate: 'business-analyst.md',
     agentFileName: 'business-analyst.md',
+  },
+  {
+    key: 'marketing-specialist',
+    label: 'Marketing Specialist',
+    description: 'Shapes positioning, messaging, channels, and go-to-market strategy.',
+    requiredSurveyFiles: ['business.md'],
+    extraSurveyFile: {
+      fileName: 'marketing.md',
+      templateName: 'marketing.md',
+      title: 'Marketing',
+    },
+    cursorTools: ['Read', 'Grep', 'Glob', 'Edit'],
+    claudeTools: ['Read', 'Grep', 'Glob', 'Edit'],
+    promptTemplate: 'marketing-specialist.md',
+    agentFileName: 'marketing-specialist.md',
   },
 ];
 
