@@ -4,7 +4,7 @@ import { logger } from '../utils/logger';
 import { writeManagedFile } from '../utils/conflicts';
 import { addManagedMarker } from '../utils/markers';
 import { hashContent, touchState, writeManifest, type AideState } from '../utils/manifest';
-import { resolveConfirmation } from '../utils/prompt';
+import { CLI_CONFIG_HINT, resolveConfirmation } from '../utils/prompt';
 import { getPersona, PLANNING_PERSONAS, type PersonaKey } from '../personas/registry';
 import type { PlaceholderValues } from '../utils/fs';
 import { computePersonaReadiness } from './survey-status';
@@ -55,6 +55,7 @@ export async function runGeneratePhase(state: AideState, options: GeneratePhaseO
 
   if (!confirmed) {
     logger.info('Generation cancelled. Nothing was written.');
+    logger.dim(`  ${CLI_CONFIG_HINT}`);
     return;
   }
 

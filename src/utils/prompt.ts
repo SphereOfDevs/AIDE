@@ -1,4 +1,5 @@
 import path from 'path';
+import chalk from 'chalk';
 import checkbox from '@inquirer/checkbox';
 import confirm from '@inquirer/confirm';
 import { readPackageName } from './fs';
@@ -230,9 +231,12 @@ export async function resolveStacks(cliValue?: string): Promise<StackKey[]> {
   return [];
 }
 
+export const CLI_CONFIG_HINT =
+  'Change setup: aide configure  ·  Skip prompts: aide init -y  ·  Full reset: aide delete -y';
+
 export async function resolveConfirmation(
   message: string,
-  options: { autoConfirm?: boolean; default?: boolean } = {}
+  options: { autoConfirm?: boolean; default?: boolean; hint?: string | false } = {}
 ): Promise<boolean> {
   if (options.autoConfirm) {
     return true;
@@ -240,6 +244,12 @@ export async function resolveConfirmation(
 
   if (!isInteractive()) {
     return options.default ?? false;
+  }
+
+  const hint = options.hint === false ? undefined : (options.hint ?? CLI_CONFIG_HINT);
+
+  if (hint) {
+    console.log(chalk.dim(`  ${hint}`));
   }
 
   return confirm({ message, default: options.default ?? true });

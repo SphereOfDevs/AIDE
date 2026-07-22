@@ -35,7 +35,7 @@ export async function runDelete(options: DeleteOptions): Promise<void> {
 
   const confirmed = await resolveConfirmation(
     'Remove all AIDE-managed files from this project? This cannot be undone.',
-    { autoConfirm: options.autoConfirm, default: false }
+    { autoConfirm: options.autoConfirm, default: false, hint: false }
   );
 
   if (!confirmed) {

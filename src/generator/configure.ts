@@ -10,6 +10,7 @@ import {
   promptForPersonasAll,
   promptForProvidersConfigured,
   promptForStacksConfigured,
+  CLI_CONFIG_HINT,
   resolveConfirmation,
 } from '../utils/prompt';
 import { getPersona, type PersonaKey } from '../personas/registry';
@@ -69,6 +70,7 @@ export async function runConfigure(options: ConfigureOptions): Promise<void> {
 
   if (!confirmed) {
     logger.info('Configuration cancelled. Nothing was changed.');
+    logger.dim(`  ${CLI_CONFIG_HINT}`);
     return;
   }
 

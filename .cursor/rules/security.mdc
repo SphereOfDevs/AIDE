@@ -1,0 +1,47 @@
+---
+managedBy: aide
+description: Security enforcement for all code changes
+globs: "**/*"
+alwaysApply: false
+---
+
+# Security Rules — aide
+
+## Authentication & Authorization
+
+- Authenticate every protected endpoint
+- Authorize per resource — default deny
+- Session/token expiry enforced server-side
+
+## Input Validation
+
+- Validate and sanitize all external input
+- Parameterized queries — no dynamic SQL concatenation
+- Escape output in UI to prevent XSS
+
+## Secrets
+
+- Never commit secrets, tokens, or private keys
+- Use environment variables or secret manager
+- Rotate credentials if accidentally exposed
+
+## Dependencies
+
+- Run audit on new dependencies
+- Pin versions; review critical CVEs before merge
+
+## Data Protection
+
+- Encrypt sensitive data at rest and in transit (TLS)
+- Log no PII or credentials
+- Apply least-privilege for service accounts
+
+## Prohibited
+
+- `eval()` or dynamic code execution on user input
+- Debug endpoints in production
+- Security through obscurity as sole control
+
+## Reference
+
+- Report security issues privately to project maintainers

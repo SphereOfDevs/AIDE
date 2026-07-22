@@ -1,0 +1,39 @@
+---
+managedBy: aide
+description: Architecture and structural change enforcement
+globs: docs/architecture.md,docs/decisions.md,project-structure.md,src/**
+alwaysApply: false
+---
+
+# Architecture Rules — aide
+
+## Before Any Structural Change
+
+1. Read `docs/architecture.md` and `project-structure.md`
+2. Write ADR in `docs/decisions.md` using the template
+3. Obtain explicit human approval
+4. Update architecture docs after implementation
+
+## Module Boundaries
+
+- Presentation → Application → Domain → Infrastructure (one direction)
+- Domain must not import from infrastructure
+- Shared utilities go in `src/shared/` — not duplicated across modules
+
+## Dependencies
+
+- Prefer stable, well-maintained libraries
+- Justify new dependencies in ADR or PR description
+- Pin versions in lockfile
+
+## Scalability Defaults
+
+- Stateless services where possible
+- Idempotent handlers for retriable operations
+- Explicit timeouts on external calls
+
+## Prohibited
+
+- Circular module dependencies
+- God files (>400 lines without clear justification)
+- Architecture changes bundled silently in feature PRs

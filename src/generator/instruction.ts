@@ -92,6 +92,29 @@ export function buildInstructionContent(
   lines.push('- `aide delete` — remove all AIDE files from the project (optionally including AI instruction files).');
   lines.push('- Editing `AIDE_SURVEY/*.md` and running `aide init` again regenerates agents with the latest content.');
   lines.push('');
+  lines.push('## Resetting configuration', '');
+  lines.push('Use the option that matches how far you want to go back.', '');
+  lines.push('### Reconfigure (keep survey and generated files)', '');
+  lines.push('```powershell');
+  lines.push('aide configure');
+  lines.push('aide configure -y -p cursor,claude -a programmer,pm,po,designer,qa,business-analyst,marketing-specialist -s angular,node-ts,tailwind');
+  lines.push('aide init -y');
+  lines.push('```', '');
+  lines.push('### Reset AIDE state only (keep survey files on disk)', '');
+  lines.push('```powershell');
+  lines.push('Remove-Item .aide\\state.json');
+  lines.push('aide init');
+  lines.push('```', '');
+  lines.push('### Full AIDE removal', '');
+  lines.push('```powershell');
+  lines.push('aide delete -y');
+  lines.push('aide delete -y --remove-instructions');
+  lines.push('```', '');
+  lines.push('## Cursor terminal: interactive prompts', '');
+  lines.push(
+    'Cursor\'s integrated terminal may repeat `Continue` when using arrow keys. Use `aide init -y` or `aide configure -y` to skip prompts, or type `y`/`n` and press Enter.'
+  );
+  lines.push('');
 
   return lines.join('\n');
 }
